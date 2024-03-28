@@ -1,6 +1,6 @@
 - name: Docker configure in EC2 Instances
   hosts: all
-  #become: true
+  become: true
   tasks:
     - name: updating the New EC2 Machine
       apt:
