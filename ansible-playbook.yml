@@ -28,4 +28,4 @@
       command: docker pull edisonthomas003/insureme_project123:latest
 
     - name: Deploy the Docker Image and Run as Container
-      command: docker run -itd -p 8081:8081 edisonthomas003/insureme_project123:latest
+      command: docker run -itd -p 8082:8081 edisonthomas003/insureme_project123:latest
