@@ -25,13 +25,13 @@ pipeline {
 
         stage('Docker Image Build') {
             steps {
-                sh 'docker build -t insurance123:v7 .' // Build Docker image
+                sh 'docker build -t insureme_project123:latest .' // Build Docker image
             }
         }
 
         stage('Deploy to the Test Server') {
             steps {
-                sh 'docker run -d -p 8082:8081 insurance123:v7' // Run Docker container
+                sh 'docker run -d -p 8082:8081 insureme_project123:latest' // Run Docker container
                 echo "Application is successfully running"
                 sh 'docker rm -f $(docker ps -a -q)' // Stopping the Running Docker container
             }
@@ -49,15 +49,15 @@ pipeline {
         stage('Push Docker Image to Hub') {
             steps {
                 echo 'Push a Docker Image'
-                sh 'docker tag insurance123 thomasdevops003/insurance123'
-                sh 'docker push thomasdevops003/insurance123'
+                sh 'docker tag insureme_project123 thomasdevops003/insureme_project123'
+                sh 'docker push thomasdevops003/insureme_project123'
                 sh 'docker rmi -f $(docker images -aq)' // Cleaning up the Image
             }
         }
 
         stage('Deployment using Ansible') {
             steps {
-                ansiblePlaybook become: true, credentialsId: 'ansible-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansiblefile'
+                ansiblePlaybook become: true, credentialsId: 'ansible1-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml'
             }
         }
     }
