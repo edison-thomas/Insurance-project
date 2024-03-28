@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git 'https://github.com/toms-tanley/Insurance-Project-star.git'
+                git 'https://github.com/edison-thomas/Insurance-project.git'
             }
         }
 
@@ -57,7 +57,7 @@ pipeline {
 
         stage('Deployment using Ansible') {
             steps {
-                ansiblePlaybook become: true, credentialsId: 'ansible1-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml'
+                ansiblePlaybook become: true, credentialsId: 'ansible-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml'
             }
         }
     }
