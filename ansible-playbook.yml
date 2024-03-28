@@ -10,7 +10,7 @@
       apt:
         name: docker.io
         state: present
-      become: true
+      #become: true
 
     - name: Start Docker Service
       systemd:
