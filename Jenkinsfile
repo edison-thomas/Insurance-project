@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git 'https://github.com/toms-tanley/Insurance-Project-star.git'
+                git 'https://github.com/edison-thomas/Insurance-project.git'
             }
         }
 
