@@ -8,9 +8,8 @@
 
     - name: Install Docker
       apt:
-        name: docker.io=24.0.5-0ubuntu1~22.04.4
+        name: docker.io
         state: present
-      #become: true
 
     - name: Start Docker Service
       systemd:
