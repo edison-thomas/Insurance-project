@@ -19,7 +19,7 @@
       become: true
 
     - name: Stopping and removing the running containers
-      shell: docker rm -f $(docker ps -a -q)
+      shell: sudo docker rm -f $(docker ps -a -q)
 
     - name: Cleaning up the images
       shell: docker rmi -f $(docker images -a -q)
