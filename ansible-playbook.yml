@@ -17,11 +17,23 @@
         state: started
       become: true
 
-    - name: Stopping and removing the running containers
+    - name: Check if any containers are running
+      shell: docker ps -q
+      register: running_containers
+      ignore_errors: true
+
+    - name: Stopping and removing running containers if any
       shell: docker rm -f $(docker ps -a -q)
-       
-    - name: Cleaning up the images
+      when: running_containers.stdout | length > 0
+    
+    - name: Check if any images exist
+      shell: docker images -q
+      register: existing_images
+      ignore_errors: true
+    
+    - name: Cleaning up images if any exist
       shell: docker rmi -f $(docker images -a -q)
+      when: existing_images.stdout | length > 0
 
     - name: Pull the Docker Image
       command: docker pull edisonthomas003/insureme_project123:latest
